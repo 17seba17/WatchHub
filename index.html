@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>WatchHub</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        iframe {
+            width: 80%;
+            height: 80%;
+            border: none;
+        }
+    </style>
 </head>
 <body>
-    <h1>funziona</h1>
+
+    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+
+    <script>
+        // Funzione per ottenere i parametri dalla query string
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Ottieni il link del video dalla query string
+        const videoLink = getQueryParam('link');
+
+        // Se il link è presente, impostalo come src dell'iframe
+        if (videoLink) {
+            document.getElementById('videoFrame').src = videoLink;
+        } else {
+            document.getElementById('videoFrame').src = 'https://example.com'; // Link di default se non c'è un link
+        }
+    </script>
+
 </body>
 </html>
+
