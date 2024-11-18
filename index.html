@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WatchHub</title>
-    <!-- Includi Video.js CSS -->
-    <link href="https://vjs.zencdn.net/7.15.4/video-js.css" rel="stylesheet" />
     <style>
         body {
             display: flex;
@@ -14,48 +12,29 @@
             height: 100vh;
             background-color: #f0f0f0;
         }
-        .video-container {
+        iframe {
             width: 80%;
-            max-width: 800px;
+            height: 80%;
+            border: none;
         }
     </style>
 </head>
 <body>
-
-    <div class="video-container">
-        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264">
-            <source id="video-source" src="" type="video/mp4" />
-            <p class="vjs-no-js">
-                Per visualizzare questo video, abilita JavaScript e considera di aggiornare a un browser web che supporti video HTML5.
-            </p>
-        </video>
-    </div>
-
-    <!-- Includi Video.js JS -->
-    <script src="https://vjs.zencdn.net/7.15.4/video.min.js"></script>
+    <iframe id="videoFrame" src="" allowfullscreen sandbox></iframe>
     <script>
         // Funzione per ottenere i parametri dalla query string
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
-
         // Ottieni il link del video dalla query string
         const videoLink = getQueryParam('link');
-
-        // Se il link è presente, impostalo come src del video
+        // Se il link è presente, impostalo come src dell'iframe
         if (videoLink) {
-            document.getElementById('video-source').src = videoLink;
-            const player = videojs('my-video');
-            player.ready(function() {
-                this.src({ type: 'video/mp4', src: videoLink });
-                this.load();
-            });
+            document.getElementById('videoFrame').src = videoLink;
         } else {
-            // Link di default se non c'è un link
-            console.error('Nessun link video fornito.');
+            document.getElementById('videoFrame').src = 'https://example.com'; // Link di default se non c'è un link
         }
     </script>
-
 </body>
 </html>
