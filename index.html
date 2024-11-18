@@ -20,21 +20,26 @@
     </style>
 </head>
 <body>
-    <iframe id="videoFrame" src="" allowfullscreen sandbox></iframe>
+
+    <iframe id="videoFrame" src="" allowfullscreen></iframe>
+
     <script>
         // Funzione per ottenere i parametri dalla query string
         function getQueryParam(param) {
             const urlParams = new URLSearchParams(window.location.search);
             return urlParams.get(param);
         }
+
         // Ottieni il link del video dalla query string
         const videoLink = getQueryParam('link');
+
         // Se il link è presente, impostalo come src dell'iframe
         if (videoLink) {
             document.getElementById('videoFrame').src = videoLink;
         } else {
-            document.getElementById('videoFrame').src = 'https://example.com'; // Link di default se non c'è un link
+            document.getElementById('videoFrame').src = 'https://www.youtube.com/embed/vGJTaP6anOU?si=k28782EflBLyt3bj'; // Link di default se non c'è un link
         }
     </script>
+
 </body>
 </html>
